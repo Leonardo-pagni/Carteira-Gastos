@@ -4,6 +4,7 @@ using Gastos.Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net.NetworkInformation;
 
 namespace Gastos.Infra
 {

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Infra\\Gastos.Infra.csproj": {}
+    "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Infra\\Gastos.Infra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Application\\Gastos.Application.csproj": {
+    "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Application\\Gastos.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Application\\Gastos.Application.csproj",
+        "projectUniqueName": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Application\\Gastos.Application.csproj",
         "projectName": "Gastos.Application",
-        "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Application\\Gastos.Application.csproj",
-        "packagesPath": "C:\\Users\\leo_p\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Application\\obj\\",
+        "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Application\\Gastos.Application.csproj",
+        "packagesPath": "C:\\Users\\p-lpagni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leo_p\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\p-lpagni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,19 +26,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
-            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Domain\\Gastos.Domain.csproj": {
-                "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Domain\\Gastos.Domain.csproj"
+              "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj": {
+                "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj"
               },
-              "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Shared\\Gastos.Shared.csproj": {
-                "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Shared\\Gastos.Shared.csproj"
+              "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Shared\\Gastos.Shared.csproj": {
+                "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Shared\\Gastos.Shared.csproj"
               }
             }
           }
@@ -57,7 +55,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
@@ -359,20 +356,20 @@
         }
       }
     },
-    "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Domain\\Gastos.Domain.csproj": {
+    "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Domain\\Gastos.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj",
         "projectName": "Gastos.Domain",
-        "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Domain\\Gastos.Domain.csproj",
-        "packagesPath": "C:\\Users\\leo_p\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Domain\\obj\\",
+        "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj",
+        "packagesPath": "C:\\Users\\p-lpagni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leo_p\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\p-lpagni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -381,12 +378,10 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
-            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -405,7 +400,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
@@ -717,20 +711,20 @@
         }
       }
     },
-    "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Infra\\Gastos.Infra.csproj": {
+    "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Infra\\Gastos.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Infra\\Gastos.Infra.csproj",
+        "projectUniqueName": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Infra\\Gastos.Infra.csproj",
         "projectName": "Gastos.Infra",
-        "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Infra\\Gastos.Infra.csproj",
-        "packagesPath": "C:\\Users\\leo_p\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Infra\\obj\\",
+        "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Infra\\Gastos.Infra.csproj",
+        "packagesPath": "C:\\Users\\p-lpagni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Infra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leo_p\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\p-lpagni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -739,16 +733,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
-            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Application\\Gastos.Application.csproj": {
-                "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Application\\Gastos.Application.csproj"
+              "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Application\\Gastos.Application.csproj": {
+                "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Application\\Gastos.Application.csproj"
               }
             }
           }
@@ -767,7 +759,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
@@ -1079,20 +1070,20 @@
         }
       }
     },
-    "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Shared\\Gastos.Shared.csproj": {
+    "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Shared\\Gastos.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Shared\\Gastos.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Shared\\Gastos.Shared.csproj",
         "projectName": "Gastos.Shared",
-        "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Shared\\Gastos.Shared.csproj",
-        "packagesPath": "C:\\Users\\leo_p\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\Gastos.Shared\\obj\\",
+        "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Shared\\Gastos.Shared.csproj",
+        "packagesPath": "C:\\Users\\p-lpagni\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\leo_p\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\p-lpagni\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -1101,12 +1092,10 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
-            "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {}
           }
@@ -1125,7 +1114,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.Abstractions": {

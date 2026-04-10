@@ -1,4 +1,7 @@
-﻿using Scalar.AspNetCore;
+﻿using Gastos.Infra.Context;
+using Gastos.Infra.Seeds;
+using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 namespace Gastos.API
 {
@@ -11,7 +14,7 @@ namespace Gastos.API
             return services;
         }
 
-        public static WebApplication UseScalarDocumentation(this WebApplication app)
+        public static async Task<WebApplication> UseScalarDocumentation(this WebApplication app)
         {
             app.MapOpenApi();
 
@@ -21,6 +24,34 @@ namespace Gastos.API
                 options.Theme = ScalarTheme.DeepSpace;
                 options.DefaultHttpClient = new(ScalarTarget.CSharp, ScalarClient.HttpClient);
             });
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                var retries = 5;
+                while (retries > 0)
+                {
+                    try
+                    {
+                        db.Database.Migrate();
+                        break;
+                    }
+                    catch
+                    {
+                        retries--;
+                        Thread.Sleep(3000);
+                    }
+                }
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+                await DbSeeds.Seed(context);
+            }
+
 
             return app;
         }

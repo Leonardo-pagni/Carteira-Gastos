@@ -18,26 +18,6 @@ builder.Services.AddOpenApi()
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-    var retries = 5;
-    while (retries > 0)
-    {
-        try
-        {
-            db.Database.Migrate();
-            break;
-        }
-        catch
-        {
-            retries--;
-            Thread.Sleep(3000);
-        }
-    }
-}
-
 app.UseScalarDocumentation();
 
 app.UseHttpsRedirection();
