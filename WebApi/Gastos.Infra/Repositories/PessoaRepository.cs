@@ -35,5 +35,10 @@ namespace Gastos.Infra.Repositories
                                  .Include(x => x.Transacoes)
                                  .FirstOrDefaultAsync(x => x.Id == id, ct);
         }
+
+        public async Task SaveChangesAsync(CancellationToken ct)
+        {
+            await _context.SaveChangesAsync(ct);
+        }
     }
 }

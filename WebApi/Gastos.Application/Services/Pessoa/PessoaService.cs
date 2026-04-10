@@ -104,6 +104,8 @@ namespace Gastos.Application.Services.Pessoa
                 pessoa.AtualizarNome(dto.Nome);
                 pessoa.AtualizarIdade(dto.Idade);
 
+                await _pessoaRepository.SaveChangesAsync(ct);
+
                 return new CommandResult(HttpStatusCode.NoContent, "Pessoa atualizada com sucesso");
             }
             catch(ArgumentException ex)
