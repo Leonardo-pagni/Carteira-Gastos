@@ -1,0 +1,1 @@
+﻿public record PessoaRequestDTO(string Nome, int Idade);

@@ -1,0 +1,1 @@
+﻿public record CategoriaRequestDTO(string descricao, string finalidade);

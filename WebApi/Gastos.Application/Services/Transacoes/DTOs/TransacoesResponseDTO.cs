@@ -1,0 +1,1 @@
+﻿public record TransacoesResponseDTO(Guid id, string descricao, decimal valor, string tipo, string Categoria, string Pessoa);

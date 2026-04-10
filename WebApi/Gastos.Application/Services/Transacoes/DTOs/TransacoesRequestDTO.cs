@@ -1,0 +1,1 @@
+﻿public record TransacoesRequestDTO(string Descricao, decimal valor, string tipo, Guid categoriaId, Guid pessoaId);

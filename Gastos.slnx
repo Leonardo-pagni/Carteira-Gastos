@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Gastos.API/Gastos.API.csproj" />
+    <Project Path="Gastos.Application/Gastos.Application.csproj" Id="e4604b39-d437-4a93-b663-76288d6a6100" />
+    <Project Path="Gastos.Domain/Gastos.Domain.csproj" Id="f681f475-c1e0-484c-aebc-05a6ef85f58c" />
+    <Project Path="Gastos.Infra/Gastos.Infra.csproj" Id="cdb3e145-2ed0-47b2-954f-a26c79258b67" />
+    <Project Path="Gastos.Shared/Gastos.Shared.csproj" Id="04e01ceb-8fa5-4608-bb21-5599bbdd536a" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="DomainTest/DomainTest.csproj" Id="3fa939e1-1609-468a-a816-114c867e2b42" />
+  </Folder>
+</Solution>

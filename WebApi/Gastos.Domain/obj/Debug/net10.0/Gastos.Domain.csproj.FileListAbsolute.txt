@@ -1,0 +1,14 @@
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\bin\Debug\net10.0\Gastos.Domain.deps.json
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\bin\Debug\net10.0\Gastos.Domain.runtimeconfig.json
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\bin\Debug\net10.0\Gastos.Domain.dll
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\bin\Debug\net10.0\Gastos.Domain.pdb
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.csproj.AssemblyReference.cache
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.AssemblyInfoInputs.cache
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.AssemblyInfo.cs
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.csproj.CoreCompileInputs.cache
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.dll
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\refint\Gastos.Domain.dll
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.pdb
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\Gastos.Domain.genruntimeconfig.cache
+C:\Users\leo_p\source\repos\Gastos\Gastos.Domain\obj\Debug\net10.0\ref\Gastos.Domain.dll

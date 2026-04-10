@@ -1,0 +1,1 @@
+﻿public record CategoriaResponseDTO(Guid id, string descricao, string finalidade);
