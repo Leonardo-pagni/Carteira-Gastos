@@ -4,11 +4,15 @@ using Gastos.Domain.Entitys.Repositories;
 using Gastos.Domain.Enums;
 using Gastos.Shared.Result;
 using Gastos.Shared.Result.DTO;
+using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace Gastos.Application.Services.Transacoes
 {
-    public class TransacoesService(ITransacoesRepository _transacoesRepository, ICategoriaRepository _categoriaRepository, IPessoaRepository _pessoaRepository) : ITransacoesService
+    public class TransacoesService(ITransacoesRepository _transacoesRepository, 
+                                   ICategoriaRepository _categoriaRepository, 
+                                   IPessoaRepository _pessoaRepository,
+                                   ILogger<TransacoesService> _logger) : ITransacoesService
     {
         public async Task<CommandResult<Guid?>> Create(TransacoesRequestDTO request, CancellationToken ct)
         {
@@ -17,14 +21,21 @@ namespace Gastos.Application.Services.Transacoes
                 var categoria = await _categoriaRepository.GetById(request.categoriaId, ct);
                 var pessoa = await _pessoaRepository.GetById(request.pessoaId, ct);
 
-                if(categoria is null)
+                if (categoria is null)
+                {
+                    _logger.LogWarning("Categoria com ID {CategoriaId} não encontrada.", request.categoriaId);
                     throw new ArgumentException("Categoria inexistente");
+                }
 
-                if(pessoa is null)
+                if (pessoa is null)
+                {
+                    _logger.LogWarning("Pessoa com ID {PessoaId} não encontrada.", request.pessoaId);
                     throw new ArgumentException("Pessoa inexistente");
+                }
 
                 if (!Enum.TryParse<ETipo>(request.tipo, true, out var TipoEnum))
                 {
+                    _logger.LogWarning("Tipo {Tipo} é inválido.", request.tipo);
                     throw new ArgumentException("Tipo inválido");
                 }
 
@@ -69,7 +80,10 @@ namespace Gastos.Application.Services.Transacoes
                 };
 
                 if (totalItems == 0)
+                {
+                    _logger.LogWarning("Nenhuma transação encontrada.");
                     return new CommandResult<PagedResult<TransacoesResponseDTO>>(paged, HttpStatusCode.NotFound, "Clientes não encontrados");
+                }
 
                 return new CommandResult<PagedResult<TransacoesResponseDTO>>(paged, HttpStatusCode.OK, "Clientes retornados com sucesso");
 

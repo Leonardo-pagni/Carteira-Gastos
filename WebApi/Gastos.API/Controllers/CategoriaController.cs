@@ -7,13 +7,14 @@ namespace Gastos.API.Controllers
 {
     [ApiController]
     [Route("Categoria")]
-    public class CategoriaController(ICategoriaService categoriaService) : Controller
+    public class CategoriaController(ICategoriaService categoriaService, ILogger<CategoriaController> _logger) : Controller
     {
         [HttpGet("Get")]
         public async Task<IActionResult> Get([FromHeader] int Page = 1, [FromHeader] int PageSize = 10, CancellationToken ct = default)
         {
             try
             {
+                _logger.LogInformation("Iniciando busca paginada de categorias. Página: {Page}, Tamanho da Página: {PageSize}", Page, PageSize);
                 var result = await categoriaService.Get(Page, PageSize, ct);
 
                 return result.ToResult();
@@ -30,6 +31,7 @@ namespace Gastos.API.Controllers
         {
             try
             {
+                _logger.LogInformation("Iniciando criação de categoria. Descrição: {Descricao}", request.descricao);
                 var result = await categoriaService.Create(request,ct);
 
                 return result.IsSuccess  ? Created($"/{result.Data}", result.Message) : result.ToResult();

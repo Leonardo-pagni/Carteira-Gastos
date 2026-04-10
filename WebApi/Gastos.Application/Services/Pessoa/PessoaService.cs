@@ -3,11 +3,12 @@ using Gastos.Domain.Entitys;
 using Gastos.Domain.Entitys.Repositories;
 using Gastos.Shared.Result;
 using Gastos.Shared.Result.DTO;
+using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace Gastos.Application.Services.Pessoa
 {
-    public class PessoaService(IPessoaRepository _pessoaRepository) : IPessoaService
+    public class PessoaService(IPessoaRepository _pessoaRepository, ILogger<PessoaService> _logger) : IPessoaService
     {
         public async Task<CommandResult<Guid?>> Create(PessoaRequestDTO dto, CancellationToken ct)
         {
@@ -70,8 +71,11 @@ namespace Gastos.Application.Services.Pessoa
                     TotalPages = (int)Math.Ceiling(totalItems / (double)PageSize)
                 };
 
-                if(totalItems == 0)
+                if (totalItems == 0)
+                {
+                    _logger.LogInformation("Nenhum cliente encontrado.");
                     return new CommandResult<PagedResult<PessoaResponseDTO>>(paged, HttpStatusCode.NotFound, "Clientes não encontrados");
+                }
 
                 return new CommandResult<PagedResult<PessoaResponseDTO>>(paged, HttpStatusCode.OK, "Clientes retornados com sucesso");
             }
@@ -93,6 +97,7 @@ namespace Gastos.Application.Services.Pessoa
                 
                 if (pessoa == null)
                 {
+                    _logger.LogWarning("Pessoa com ID {Id} não encontrada para atualização.", id);
                     return new CommandResult(HttpStatusCode.NotFound, "Pessoa não encontrada");
                 }
 

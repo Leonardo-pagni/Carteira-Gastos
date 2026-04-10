@@ -7,13 +7,14 @@ namespace Gastos.API.Controllers
 {
     [ApiController]
     [Route("/Transacoes")]
-    public class TransacoesController(ITransacoesService transacoesService) : Controller
+    public class TransacoesController(ITransacoesService transacoesService, ILogger<TransacoesController> _logger) : Controller
     {
         [HttpGet("Get")]
         public async Task<IActionResult> Get([FromHeader] int Page = 1, [FromHeader] int PageSize = 10, CancellationToken ct = default)
         {
             try
             {
+                _logger.LogInformation("Iniciando busca paginada de transacoes. Página: {Page}, Tamanho da Página: {PageSize}", Page, PageSize);
                 var result = await transacoesService.Get(Page, PageSize, ct);
 
                 return result.ToResult();
@@ -30,6 +31,7 @@ namespace Gastos.API.Controllers
         {
             try
             {
+                _logger.LogInformation("Iniciando criação de transacao. Descrição: {Descricao}, Valor: {valor}", request.Descricao, request.valor);
                 var result = await transacoesService.Create(request, ct);
 
                 return result.ToResult();

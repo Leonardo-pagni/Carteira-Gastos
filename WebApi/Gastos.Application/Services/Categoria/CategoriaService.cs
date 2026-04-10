@@ -1,14 +1,16 @@
-﻿using Gastos.Application.Services.Categoria.DTOs;
+﻿using Azure.Core;
+using Gastos.Application.Services.Categoria.DTOs;
 using Gastos.Domain.Entitys;
 using Gastos.Domain.Entitys.Repositories;
 using Gastos.Domain.Enums;
 using Gastos.Shared.Result;
 using Gastos.Shared.Result.DTO;
+using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace Gastos.Application.Services.Categoria
 {
-    public class CategoriaService(ICategoriaRepository _categoriaRepository) : ICategoriaService
+    public class CategoriaService(ICategoriaRepository _categoriaRepository, ILogger<CategoriaService> _logger) : ICategoriaService
     {
         public async Task<CommandResult<Guid?>> Create(CategoriaRequestDTO request, CancellationToken ct)
         {
@@ -16,6 +18,7 @@ namespace Gastos.Application.Services.Categoria
             {
                 if (!Enum.TryParse<EFinalidade>(request.finalidade, true, out var finalidadeEnum))
                 {
+                    _logger.LogWarning("Finalidade inválida: {Finalidade}", request.finalidade);
                     throw new ArgumentException("Finalidade inválida");
                 }
 
@@ -60,9 +63,12 @@ namespace Gastos.Application.Services.Categoria
                 };
 
                 if (totalItems == 0)
-                    return new CommandResult<PagedResult<CategoriaResponseDTO>>(paged, HttpStatusCode.NotFound, "Clientes não encontrados");
+                {
+                    _logger.LogInformation("Nenhuma categoria encontrada");
+                    return new CommandResult<PagedResult<CategoriaResponseDTO>>(paged, HttpStatusCode.NotFound, "Categorias não encontradas");
+                }
 
-                return new CommandResult<PagedResult<CategoriaResponseDTO>>(paged, HttpStatusCode.OK, "Clientes retornados com sucesso");
+                return new CommandResult<PagedResult<CategoriaResponseDTO>>(paged, HttpStatusCode.OK, "Categorias retornadas com sucesso");
             }
             catch (ArgumentException ex)
             {
