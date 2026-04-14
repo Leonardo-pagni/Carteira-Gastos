@@ -14,12 +14,26 @@ builder.Services.AddOpenApi()
                 .AddApiServices()
                 .AddInfraServices(builder.Configuration);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("front", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
 
 var app = builder.Build();
 
 app.InitializeDb();
 
 app.UseScalarDocumentation();
+
+app.UseCors("front");
 
 app.UseHttpsRedirection();
 
