@@ -1,4 +1,4 @@
-﻿using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Gastos.Domain.Enums;
 
 namespace DomainTest
@@ -13,7 +13,7 @@ namespace DomainTest
             var idade = 30;
 
             // Act
-            var pessoa = new PessoaEntity(nome, idade);
+            var pessoa = new Pessoa(nome, idade);
 
             // Assert
             Assert.NotEqual(Guid.Empty, pessoa.Id);
@@ -30,7 +30,7 @@ namespace DomainTest
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
-                new PessoaEntity(nome, idade));
+                new Pessoa(nome, idade));
 
             Assert.Equal("O nome não pode ser vazio", exception.Message);
         }
@@ -44,7 +44,7 @@ namespace DomainTest
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
-                new PessoaEntity(nome, idade));
+                new Pessoa(nome, idade));
 
             Assert.Equal("O nome não pode ser vazio", exception.Message);
         }
@@ -58,7 +58,7 @@ namespace DomainTest
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
-                new PessoaEntity(nome, idade));
+                new Pessoa(nome, idade));
 
             Assert.Equal("O nome não pode ter mais de 200 caracteres.", exception.Message);
         }
@@ -67,7 +67,7 @@ namespace DomainTest
         public void Deve_Atualizar_Nome_Valido()
         {
             // Arrange
-            var pessoa = new PessoaEntity("João", 30);
+            var pessoa = new Pessoa("João", 30);
             var novoNome = "Maria";
 
             // Act
@@ -81,7 +81,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Ao_Atualizar_Nome_Nullo()
         {
             // Arrange
-            var pessoa = new PessoaEntity("João", 30);
+            var pessoa = new Pessoa("João", 30);
 
             // Act & Assert
             Assert.Throws<ArgumentException>(() =>
@@ -92,7 +92,7 @@ namespace DomainTest
         public void Deve_Atualizar_Idade()
         {
             // Arrange
-            var pessoa = new PessoaEntity("João", 30);
+            var pessoa = new Pessoa("João", 30);
             var novaIdade = 40;
 
             // Act
@@ -105,11 +105,11 @@ namespace DomainTest
         [Fact]
         public void Deve_Calcular_Total_Receita_Corretamente()
         {
-            var pessoa = new PessoaEntity("João", 30);
+            var pessoa = new Pessoa("João", 30);
 
 
-            pessoa.Transacoes.Add(new TransacoesEntity("Salário", 1000, ETipo.Receita, Guid.NewGuid(), pessoa.Id, EFinalidade.Receita, 30));
-            pessoa.Transacoes.Add(new TransacoesEntity("Freela", 500, ETipo.Receita, Guid.NewGuid(), pessoa.Id, EFinalidade.Ambas, 30));
+            pessoa.Transacoes.Add(new Transacoes("Salário", 1000, ETipo.Receita, Guid.NewGuid(), pessoa.Id, EFinalidade.Receita, 30));
+            pessoa.Transacoes.Add(new Transacoes("Freela", 500, ETipo.Receita, Guid.NewGuid(), pessoa.Id, EFinalidade.Ambas, 30));
 
             var total = pessoa.TotalReceita;
 
@@ -120,10 +120,10 @@ namespace DomainTest
         [Fact]
         public void Deve_Calcular_Total_Despesa_Corretamente()
         {
-            var pessoa = new PessoaEntity("João", 30);
+            var pessoa = new Pessoa("João", 30);
 
-            pessoa.Transacoes.Add(new TransacoesEntity("Aluguel", 800, ETipo.Despesa, Guid.NewGuid(), pessoa.Id, EFinalidade.Despesas, 30));
-            pessoa.Transacoes.Add(new TransacoesEntity("Mercado", 200, ETipo.Despesa, Guid.NewGuid(), pessoa.Id, EFinalidade.Ambas, 30));
+            pessoa.Transacoes.Add(new Transacoes("Aluguel", 800, ETipo.Despesa, Guid.NewGuid(), pessoa.Id, EFinalidade.Despesas, 30));
+            pessoa.Transacoes.Add(new Transacoes("Mercado", 200, ETipo.Despesa, Guid.NewGuid(), pessoa.Id, EFinalidade.Ambas, 30));
 
             var total = pessoa.TotalDespesa;
 
@@ -134,10 +134,10 @@ namespace DomainTest
         [Fact]
         public void Deve_Calcular_Saldo_Corretamente()
         {
-            var pessoa = new PessoaEntity("João", 30);
+            var pessoa = new Pessoa("João", 30);
 
-            pessoa.Transacoes.Add(new TransacoesEntity("Salário", 2000, ETipo.Receita, Guid.NewGuid(), pessoa.Id, EFinalidade.Receita, 30));
-            pessoa.Transacoes.Add(new TransacoesEntity("Aluguel", 1000, ETipo.Despesa, Guid.NewGuid(), pessoa.Id, EFinalidade.Despesas, 30));
+            pessoa.Transacoes.Add(new Transacoes("Salário", 2000, ETipo.Receita, Guid.NewGuid(), pessoa.Id, EFinalidade.Receita, 30));
+            pessoa.Transacoes.Add(new Transacoes("Aluguel", 1000, ETipo.Despesa, Guid.NewGuid(), pessoa.Id, EFinalidade.Despesas, 30));
 
             var saldo = pessoa.Saldo;
 

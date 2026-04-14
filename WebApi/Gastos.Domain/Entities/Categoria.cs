@@ -1,12 +1,12 @@
 ﻿using Gastos.Domain.Enums;
 
-namespace Gastos.Domain.Entitys
+namespace Gastos.Domain.Entities
 {
-    public class CategoriaEntity
+    public class Categoria
     {
-        public CategoriaEntity() { }
+        public Categoria() { }
 
-        public CategoriaEntity(string descricao, EFinalidade finalidade)
+        public Categoria(string descricao, EFinalidade finalidade)
         {
             ValidarDescricao(descricao);
 

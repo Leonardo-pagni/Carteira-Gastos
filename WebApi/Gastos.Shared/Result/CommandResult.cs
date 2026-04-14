@@ -3,32 +3,15 @@ using System.Text.Json.Serialization;
 
 namespace Gastos.Shared.Result
 {
-    public class CommandResult<T>
+    public class CommandResult : ICommandResult
     {
-        public CommandResult(T data, HttpStatusCode statusCode, string message)
-        {
-            Data = data;
-            StatusCode = (int)statusCode;
-            Message = message;
-        }
+        public string Message { get; set; }
 
-        public T Data { get; private set; }
-        public int StatusCode { get; private set; }
-        public string Message { get; private set; }
         [JsonIgnore]
-        public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
+        public HttpStatusCode StatusCode { get; set; }
     }
-    public class CommandResult
+    public class CommandResult<T> : CommandResult, ICommandResult<T>
     {
-        public CommandResult(HttpStatusCode statusCode, string message)
-        {
-            StatusCode = (int)statusCode;
-            Message = message;
-        }
-
-        public int StatusCode { get; private set; }
-        public string Message { get; private set; }
-        [JsonIgnore]
-        public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
+        public T Data { get; set; }
     }
 }

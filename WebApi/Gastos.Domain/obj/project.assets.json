@@ -3628,23 +3628,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\p-lpagni\\.nuget\\packages\\": {},
+    "C:\\Users\\leo_p\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\leo_p\\source\\repos\\Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj",
       "projectName": "Gastos.Domain",
-      "projectPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj",
-      "packagesPath": "C:\\Users\\p-lpagni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\p-lpagni\\Desktop\\jornadaMilhas\\Carteira-Gastos\\WebApi\\Gastos.Domain\\obj\\",
+      "projectPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\WebApi\\Gastos.Domain\\Gastos.Domain.csproj",
+      "packagesPath": "C:\\Users\\leo_p\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\leo_p\\source\\repos\\Gastos\\WebApi\\Gastos.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\p-lpagni\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\leo_p\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3653,6 +3653,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

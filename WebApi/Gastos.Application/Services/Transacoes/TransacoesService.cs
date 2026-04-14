@@ -1,18 +1,15 @@
 ﻿using Gastos.Application.Services.Transacoes.DTOs;
-using Gastos.Domain.Entitys;
-using Gastos.Domain.Entitys.Repositories;
+using Gastos.Domain.Entities.Repositories;
 using Gastos.Domain.Enums;
 using Gastos.Shared.Result;
 using Gastos.Shared.Result.DTO;
-using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace Gastos.Application.Services.Transacoes
 {
     public class TransacoesService(ITransacoesRepository _transacoesRepository, 
                                    ICategoriaRepository _categoriaRepository, 
-                                   IPessoaRepository _pessoaRepository,
-                                   ILogger<TransacoesService> _logger) : ITransacoesService
+                                   IPessoaRepository _pessoaRepository) : ITransacoesService
     {
         public async Task<CommandResult<Guid?>> Create(TransacoesRequestDTO request, CancellationToken ct)
         {
@@ -22,36 +19,27 @@ namespace Gastos.Application.Services.Transacoes
                 var pessoa = await _pessoaRepository.GetById(request.pessoaId, ct);
 
                 if (categoria is null)
-                {
-                    _logger.LogWarning("Categoria com ID {CategoriaId} não encontrada.", request.categoriaId);
-                    throw new ArgumentException("Categoria inexistente");
-                }
+                    return new CommandResult<Guid?> { StatusCode = HttpStatusCode.NotFound, Message = "Categoria não encontrada" };
 
                 if (pessoa is null)
-                {
-                    _logger.LogWarning("Pessoa com ID {PessoaId} não encontrada.", request.pessoaId);
-                    throw new ArgumentException("Pessoa inexistente");
-                }
+                    return new CommandResult<Guid?> { StatusCode = HttpStatusCode.NotFound, Message = "Pessoa não encontrada" };
 
                 if (!Enum.TryParse<ETipo>(request.tipo, true, out var TipoEnum))
-                {
-                    _logger.LogWarning("Tipo {Tipo} é inválido.", request.tipo);
-                    throw new ArgumentException("Tipo inválido");
-                }
+                    return new CommandResult<Guid?> { StatusCode = HttpStatusCode.BadRequest, Message = "Tipo inválido!" };
 
-                var transacoesEntity = new TransacoesEntity(request.Descricao, request.valor, TipoEnum, request.categoriaId, request.pessoaId, (EFinalidade)categoria.Finalidade, pessoa.Idade);
+                var transacoesEntity = new Domain.Entities.Transacoes(request.Descricao, request.valor, TipoEnum, request.categoriaId, request.pessoaId, (EFinalidade)categoria.Finalidade, pessoa.Idade);
 
-                var id = await _transacoesRepository.Create(transacoesEntity, ct);
+                await _transacoesRepository.Create(transacoesEntity, ct);
 
-                return new CommandResult<Guid?>(id, HttpStatusCode.Created, "Transação criada com sucesso");
+                return new CommandResult<Guid?> { Data = transacoesEntity.Id, StatusCode = HttpStatusCode.Created, Message = "Transação criada com sucesso" };
             }
             catch (ArgumentException ex)
             {
-                return new CommandResult<Guid?>(null, HttpStatusCode.BadRequest, ex.Message);
+                return new CommandResult<Guid?> { StatusCode = HttpStatusCode.BadRequest, Message = ex.Message };
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new CommandResult<Guid?> { StatusCode = HttpStatusCode.InternalServerError, Message = $"Erro interno da aplicação. Detalhes: {ex.Message}" };
             }
         }
 
@@ -59,42 +47,32 @@ namespace Gastos.Application.Services.Transacoes
         {
             try
             {
-                var transacoes = await _transacoesRepository.get(ct);
+                var transacoes = await _transacoesRepository.get(page, pageSize, ct);
 
-                var totalItems = transacoes.Count();
-
-                var items = transacoes 
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToList();
-
-                var result = transacoes.ToTransacoesResponseDTO();
+                var result = transacoes.transacoes.ToTransacoesResponseDTO();
 
                 var paged = new PagedResult<TransacoesResponseDTO>
                 {
                     Items = result,
                     Page = page,
                     PageSize = pageSize,
-                    TotalItems = totalItems,
-                    TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
+                    TotalItems = transacoes.total,
+                    TotalPages = (int)Math.Ceiling(transacoes.total / (double)pageSize)
                 };
 
-                if (totalItems == 0)
-                {
-                    _logger.LogWarning("Nenhuma transação encontrada.");
-                    return new CommandResult<PagedResult<TransacoesResponseDTO>>(paged, HttpStatusCode.NotFound, "Clientes não encontrados");
-                }
+                if (transacoes.total == 0)
+                    return new CommandResult<PagedResult<TransacoesResponseDTO>> { Data = paged, StatusCode = HttpStatusCode.NotFound, Message = "Transacoes não encontradas" };
 
-                return new CommandResult<PagedResult<TransacoesResponseDTO>>(paged, HttpStatusCode.OK, "Clientes retornados com sucesso");
+                return new CommandResult<PagedResult<TransacoesResponseDTO>> { Data = paged, StatusCode = HttpStatusCode.OK, Message = "Clientes retornados com sucesso" };
 
             }
             catch(ArgumentException ex)
             {
-                return new CommandResult<PagedResult<TransacoesResponseDTO>>(null, HttpStatusCode.BadRequest, ex.Message);
+                return new CommandResult<PagedResult<TransacoesResponseDTO>> { StatusCode = HttpStatusCode.BadRequest, Message = ex.Message };
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new CommandResult<PagedResult<TransacoesResponseDTO>> { StatusCode = HttpStatusCode.InternalServerError, Message = $"Erro interno da aplicação. Detalhes: {ex.Message}" };
             }
         }
     }

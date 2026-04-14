@@ -1,12 +1,12 @@
 ﻿using Gastos.Domain.Enums;
 
-namespace Gastos.Domain.Entitys
+namespace Gastos.Domain.Entities
 {
-    public class TransacoesEntity
+    public class Transacoes
     {
-        public TransacoesEntity() { }
+        public Transacoes() { }
 
-        public TransacoesEntity(string descricao, decimal valor, ETipo tipo, Guid categoriaID, Guid pessoaId, EFinalidade finalidadeCategoria, int idadePessoa)
+        public Transacoes(string descricao, decimal valor, ETipo tipo, Guid categoriaID, Guid pessoaId, EFinalidade finalidadeCategoria, int idadePessoa)
         {
             ValidarDescricao(descricao);
             ValidarValor(valor);
@@ -27,8 +27,8 @@ namespace Gastos.Domain.Entitys
         public int Tipo { get; private set; }
         public Guid CategoriaId { get; private set; }
         public Guid PessoaId { get; private set; }
-        public virtual CategoriaEntity Categoria { get; private set; }
-        public virtual PessoaEntity Pessoa { get; private set; }
+        public virtual Categoria Categoria { get; private set; }
+        public virtual Pessoa Pessoa { get; private set; }
 
         private void ValidarDescricao(string descricao)
         {

@@ -1,6 +1,4 @@
-﻿using System;
-using Xunit;
-using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Gastos.Domain.Enums;
 
 namespace DomainTest
@@ -10,7 +8,7 @@ namespace DomainTest
         [Fact]
         public void Deve_Criar_Transacao_Valida_Para_Maior_De_Idade()
         {
-            var transacao = new TransacoesEntity(
+            var transacao = new Transacoes(
             "Salário",
             1000,
             ETipo.Receita,
@@ -29,7 +27,7 @@ namespace DomainTest
         [Fact]
         public void Deve_Criar_Transacao_Despesa_Para_Menor_De_Idade()
         {
-            var transacao = new TransacoesEntity(
+            var transacao = new Transacoes(
                 "Lanche",
                 50,
                 ETipo.Despesa,
@@ -46,7 +44,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Quando_Menor_Tentar_Criar_Receita()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     "Salário",
                     100,
                     ETipo.Receita,
@@ -63,7 +61,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Quando_Descricao_For_Vazia()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     "",
                     100,
                     ETipo.Receita,
@@ -82,7 +80,7 @@ namespace DomainTest
             var descricao = new string('a', 401);
 
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     descricao,
                     100,
                     ETipo.Receita,
@@ -99,7 +97,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Quando_Valor_For_Zero()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     "Teste",
                     0,
                     ETipo.Despesa,
@@ -116,7 +114,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Quando_Valor_For_Negativo()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     "Teste",
                     -10,
                     ETipo.Despesa,
@@ -133,7 +131,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Quando_Tipo_For_Despesa_E_Categoria_For_Receita()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     "Conta",
                     100,
                     ETipo.Despesa,
@@ -150,7 +148,7 @@ namespace DomainTest
         public void Deve_Lancar_Excecao_Quando_Tipo_For_Receita_E_Categoria_For_Despesa()
         {
             var exception = Assert.Throws<ArgumentException>(() =>
-                new TransacoesEntity(
+                new Transacoes(
                     "Salário",
                     100,
                     ETipo.Receita,
@@ -166,7 +164,7 @@ namespace DomainTest
         [Fact]
         public void Deve_Permitir_Finalidade_Ambas()
         {
-            var receita = new TransacoesEntity(
+            var receita = new Transacoes(
                 "Salário",
                 100,
                 ETipo.Receita,
@@ -176,7 +174,7 @@ namespace DomainTest
                 25
             );
 
-            var despesa = new TransacoesEntity(
+            var despesa = new Transacoes(
                 "Conta",
                 100,
                 ETipo.Despesa,

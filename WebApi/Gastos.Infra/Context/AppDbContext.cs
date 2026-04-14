@@ -1,4 +1,4 @@
-﻿using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gastos.Infra.Context
@@ -7,9 +7,9 @@ namespace Gastos.Infra.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<PessoaEntity> Pessoa {  get; set; }
-        public DbSet<TransacoesEntity> Transacoes { get; set; }
-        public DbSet<CategoriaEntity> Categoria { get; set; }
+        public DbSet<Pessoa> Pessoa {  get; set; }
+        public DbSet<Transacoes> Transacoes { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

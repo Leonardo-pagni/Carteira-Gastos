@@ -1,12 +1,12 @@
-﻿using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gastos.Infra.EntityTypeConfiguration
 {
-    public class CategoriaMap : IEntityTypeConfiguration<CategoriaEntity>
+    public class CategoriaMap : IEntityTypeConfiguration<Categoria>
     {
-        public void Configure(EntityTypeBuilder<CategoriaEntity> builder)
+        public void Configure(EntityTypeBuilder<Categoria> builder)
         {
             builder.ToTable("Categoria");
 

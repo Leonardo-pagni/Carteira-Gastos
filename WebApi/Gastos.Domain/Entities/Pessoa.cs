@@ -1,10 +1,10 @@
 ﻿using Gastos.Domain.Enums;
 
-namespace Gastos.Domain.Entitys
+namespace Gastos.Domain.Entities
 {
-    public class PessoaEntity
+    public class Pessoa
     {
-        public PessoaEntity(string nome, int idade)
+        public Pessoa(string nome, int idade)
         {
             ValidarNome(nome);
 
@@ -13,12 +13,12 @@ namespace Gastos.Domain.Entitys
             Idade = idade;
         }
 
-        protected PessoaEntity() { }
+        protected Pessoa() { }
 
         public Guid Id { get; private set; }
         public string Nome { get; private set; }
         public int Idade { get; private set; }
-        public ICollection<TransacoesEntity> Transacoes { get; private set; } = new List<TransacoesEntity>();
+        public ICollection<Transacoes> Transacoes { get; private set; } = new List<Transacoes>();
         public decimal TotalReceita => Transacoes.Where(x => x.Tipo == (int)ETipo.Receita).Sum(x => x.Valor);
         public decimal TotalDespesa => Transacoes.Where(x => x.Tipo == (int)ETipo.Despesa).Sum(x => x.Valor);
         public decimal Saldo => TotalReceita - TotalDespesa;

@@ -1,120 +1,113 @@
 ﻿using Gastos.Application.Services.Pessoa.DTOs;
-using Gastos.Domain.Entitys;
-using Gastos.Domain.Entitys.Repositories;
+using Gastos.Domain.Entities.Repositories;
 using Gastos.Shared.Result;
 using Gastos.Shared.Result.DTO;
-using Microsoft.Extensions.Logging;
 using System.Net;
 
 namespace Gastos.Application.Services.Pessoa
 {
-    public class PessoaService(IPessoaRepository _pessoaRepository, ILogger<PessoaService> _logger) : IPessoaService
+    public class PessoaService(IPessoaRepository _pessoaRepository) : IPessoaService
     {
-        public async Task<CommandResult<Guid?>> Create(PessoaRequestDTO dto, CancellationToken ct)
+        public async Task<ICommandResult<Guid?>> Create(PessoaRequestDTO dto, CancellationToken ct)
         {
             try
             {
-                var pessoaEntity = new PessoaEntity(dto.Nome, dto.Idade);
+                var pessoaEntity = new Domain.Entities.Pessoa(dto.Nome, dto.Idade);
 
-                var id = await _pessoaRepository.Create(pessoaEntity, ct);
+                await _pessoaRepository.Create(pessoaEntity, ct);
 
-                return new CommandResult<Guid?>(id, HttpStatusCode.Created, "Pessoa criada com sucesso");
+                return new CommandResult<Guid?> { Data = pessoaEntity.Id, StatusCode = HttpStatusCode.Created, Message = "Pessoa criada com sucesso" };
             }
             catch (ArgumentException ex)
             {
-                return new CommandResult<Guid?>(null, HttpStatusCode.BadRequest, ex.Message);
+                return new CommandResult<Guid?> { StatusCode = HttpStatusCode.BadRequest, Message = ex.Message };
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new CommandResult<Guid?> { Message = $"Erro interno do servidor. Detalhes: {ex.Message}", StatusCode = HttpStatusCode.InternalServerError};
             }
         }
 
-        public async Task<CommandResult> Delete(Guid id, CancellationToken ct)
+        public async Task<ICommandResult> Delete(Guid id, CancellationToken ct)
         {
             try
             {
-                await _pessoaRepository.DeleteById(id, ct);
-                return new CommandResult(HttpStatusCode.NoContent, "Pessoa deletada com sucesso");
+                var pessoa = await _pessoaRepository.GetById(id, ct);
+
+                if (pessoa is null)
+                    return new CommandResult { StatusCode = HttpStatusCode.NotFound, Message = "Pessoa não encontrada" };
+
+                await _pessoaRepository.DeleteById(pessoa, ct);
+
+                return new CommandResult { StatusCode = HttpStatusCode.NoContent, Message = "Pessoa deletada com sucesso" };
             }
             catch (ArgumentException ex)
             {
-                return new CommandResult(HttpStatusCode.BadRequest, ex.Message);
+                return new CommandResult { StatusCode = HttpStatusCode.BadRequest, Message = ex.Message };
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new CommandResult { Message = $"Erro interno do servidor. Detalhes: {ex.Message}", StatusCode = HttpStatusCode.InternalServerError };
             }
         }
 
-        public async Task<CommandResult<PagedResult<PessoaResponseDTO>>> Get(int Page, int PageSize, CancellationToken ct)
+        public async Task<ICommandResult<PagedResult<PessoaResponseDTO>>> Get(int page, int pageSize, CancellationToken ct)
         {
             try
             {
-                var pessoa = await _pessoaRepository.Get(ct);
+                var pessoas = await _pessoaRepository.Get(page, pageSize,ct);
 
-                var totalItems = pessoa.Count();
-
-                var items = pessoa
-                    .Skip((Page - 1) * PageSize)
-                    .Take(PageSize)
-                    .ToList();
-
-                var result = items.ToPessoaResponseDTO();
+                var result = pessoas.pessoas.ToPessoaResponseDTO();
 
                 var paged = new PagedResult<PessoaResponseDTO>
                 {
                     Items = result,
-                    Page = Page,
-                    PageSize = PageSize,
-                    TotalItems = totalItems,
-                    TotalPages = (int)Math.Ceiling(totalItems / (double)PageSize)
+                    Page = page,
+                    PageSize = pageSize,
+                    TotalItems = pessoas.total,
+                    TotalPages = (int)Math.Ceiling(pessoas.total / (double)pageSize)
                 };
 
-                if (totalItems == 0)
+                if (pessoas.total == 0)
                 {
-                    _logger.LogInformation("Nenhum cliente encontrado.");
-                    return new CommandResult<PagedResult<PessoaResponseDTO>>(paged, HttpStatusCode.NotFound, "Clientes não encontrados");
+                    return new CommandResult<PagedResult<PessoaResponseDTO>> { Data = paged, StatusCode = HttpStatusCode.NotFound, Message = "Clientes não encontrados" };
                 }
 
-                return new CommandResult<PagedResult<PessoaResponseDTO>>(paged, HttpStatusCode.OK, "Clientes retornados com sucesso");
+                return new CommandResult<PagedResult<PessoaResponseDTO>> { Data = paged, StatusCode = HttpStatusCode.OK, Message = "Clientes retornados com sucesso" };
             }
             catch(ArgumentException ex)
             {
-                return new CommandResult<PagedResult<PessoaResponseDTO>>(null, HttpStatusCode.BadRequest, ex.Message);
+                return new CommandResult<PagedResult<PessoaResponseDTO>> { StatusCode = HttpStatusCode.BadRequest, Message = ex.Message };
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new CommandResult<PagedResult<PessoaResponseDTO>> { Message = $"Erro interno do servidor. Detalhes: {ex.Message}", StatusCode = HttpStatusCode.InternalServerError };
             }
         }
 
-        public async Task<CommandResult> Update(Guid id, PessoaRequestDTO dto, CancellationToken ct)
+        public async Task<ICommandResult> Update(Guid id, PessoaRequestDTO dto, CancellationToken ct)
         {
             try
             {
                 var pessoa = await _pessoaRepository.GetById(id, ct);
                 
                 if (pessoa == null)
-                {
-                    _logger.LogWarning("Pessoa com ID {Id} não encontrada para atualização.", id);
-                    return new CommandResult(HttpStatusCode.NotFound, "Pessoa não encontrada");
-                }
+                    return new CommandResult { StatusCode = HttpStatusCode.NotFound, Message = "Pessoa não encontrada" };
 
                 pessoa.AtualizarNome(dto.Nome);
                 pessoa.AtualizarIdade(dto.Idade);
 
-                await _pessoaRepository.SaveChangesAsync(ct);
+                await _pessoaRepository.Updated(ct);
 
-                return new CommandResult(HttpStatusCode.NoContent, "Pessoa atualizada com sucesso");
+                return new CommandResult { StatusCode = HttpStatusCode.NoContent, Message = "Pessoa atualizada com sucesso" };
             }
             catch(ArgumentException ex)
             {
-                return new CommandResult(HttpStatusCode.BadRequest, ex.Message);
+                return new CommandResult { StatusCode = HttpStatusCode.BadRequest, Message = ex.Message };
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return new CommandResult { Message = $"Erro interno do servidor. Detalhes: {ex.Message}", StatusCode = HttpStatusCode.InternalServerError };
             }
         }
     }

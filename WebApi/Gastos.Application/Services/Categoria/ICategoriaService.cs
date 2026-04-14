@@ -5,7 +5,7 @@ namespace Gastos.Application.Services.Categoria
 {
     public interface ICategoriaService
     {
-        Task<CommandResult<PagedResult<CategoriaResponseDTO>>> Get(int page, int pageSize, CancellationToken ct);
-        Task<CommandResult<Guid?>> Create(CategoriaRequestDTO request, CancellationToken ct);
+        Task<ICommandResult<PagedResult<CategoriaResponseDTO>>> Get(int page, int pageSize, CancellationToken ct);
+        Task<ICommandResult<Guid?>> Create(CategoriaRequestDTO request, CancellationToken ct);
     }
 }

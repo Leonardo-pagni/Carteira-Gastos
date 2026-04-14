@@ -1,10 +1,10 @@
-﻿using Gastos.Domain.Entitys.Repositories;
+﻿using Gastos.Domain.Entities.Repositories;
 using Gastos.Infra.Context;
 using Gastos.Infra.Repositories;
+using Gastos.Infra.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.NetworkInformation;
 
 namespace Gastos.Infra
 {

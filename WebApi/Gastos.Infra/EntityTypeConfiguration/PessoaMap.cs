@@ -1,12 +1,12 @@
-﻿using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gastos.Infra.EntityTypeConfiguration
 {
-    public class PessoaMap : IEntityTypeConfiguration<PessoaEntity>
+    public class PessoaMap : IEntityTypeConfiguration<Pessoa>
     {
-        public void Configure(EntityTypeBuilder<PessoaEntity> builder)
+        public void Configure(EntityTypeBuilder<Pessoa> builder)
         {
             builder.ToTable("Pessoa");
 

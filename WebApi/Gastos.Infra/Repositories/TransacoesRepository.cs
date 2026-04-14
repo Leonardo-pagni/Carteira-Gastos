@@ -1,5 +1,5 @@
-﻿using Gastos.Domain.Entitys;
-using Gastos.Domain.Entitys.Repositories;
+﻿using Gastos.Domain.Entities;
+using Gastos.Domain.Entities.Repositories;
 using Gastos.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,22 +7,27 @@ namespace Gastos.Infra.Repositories
 {
     internal class TransacoesRepository(AppDbContext _context) : ITransacoesRepository
     {
-        public async Task<Guid> Create(TransacoesEntity transacao, CancellationToken ct)
+        public async Task Create(Transacoes transacao, CancellationToken ct)
         {
             await _context.Transacoes.AddAsync(transacao, ct);
-            _context.SaveChangesAsync(ct);
 
-            return transacao.Id;
+            _context.SaveChangesAsync(ct);            
         }
 
 
-        public async Task<ICollection<TransacoesEntity>> get(CancellationToken ct)
+        public async Task<(ICollection<Transacoes> transacoes, int total)> get(int page, int pagesize, CancellationToken ct)
         {
-            return await _context.Transacoes
+            var transacoes = await _context.Transacoes
                                  .Include(x => x.Pessoa)
                                  .Include(x => x.Categoria)
                                  .AsNoTracking()
+                                 .Skip((page - 1) * pagesize)
+                                 .Take(pagesize)
                                  .ToListAsync(ct);
+
+            var total = await _context.Transacoes.CountAsync(ct);
+
+            return (transacoes, total);
         }
     }
 }

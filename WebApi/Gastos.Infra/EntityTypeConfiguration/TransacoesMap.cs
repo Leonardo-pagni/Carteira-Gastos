@@ -1,12 +1,12 @@
-﻿using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Gastos.Infra.EntityTypeConfiguration
 {
-    public class TransacoesMap : IEntityTypeConfiguration<TransacoesEntity>
+    public class TransacoesMap : IEntityTypeConfiguration<Transacoes>
     {
-        public void Configure(EntityTypeBuilder<TransacoesEntity> builder)
+        public void Configure(EntityTypeBuilder<Transacoes> builder)
         {
             builder.ToTable("Transacoes");
 

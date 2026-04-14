@@ -1,9 +1,9 @@
-﻿using Gastos.Domain.Entitys;
+﻿using Gastos.Domain.Entities;
 using Gastos.Domain.Enums;
 
 namespace DomainTest
 {
-    public class CategoriaEntityTest
+    public class CategoriaTest
     {
         [Fact]
         public void Deve_Criar_Categoria_Valida()
@@ -13,7 +13,7 @@ namespace DomainTest
             var finalidade = EFinalidade.Despesas;
 
             // Act
-            var categoria = new CategoriaEntity(descricao, finalidade);
+            var categoria = new Categoria(descricao, finalidade);
 
             // Assert
             Assert.NotEqual(Guid.Empty, categoria.Id);
@@ -29,7 +29,7 @@ namespace DomainTest
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
-                new CategoriaEntity(descricao, EFinalidade.Despesas));
+                new Categoria(descricao, EFinalidade.Despesas));
 
             Assert.Equal("A descrição não pode ser vazia.", exception.Message);
         }
@@ -42,7 +42,7 @@ namespace DomainTest
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
-                new CategoriaEntity(descricao, EFinalidade.Despesas));
+                new Categoria(descricao, EFinalidade.Despesas));
 
             Assert.Equal("A descrição não pode ser vazia.", exception.Message);
         }
@@ -55,7 +55,7 @@ namespace DomainTest
 
             // Act & Assert
             var exception = Assert.Throws<ArgumentException>(() =>
-                new CategoriaEntity(descricao, EFinalidade.Despesas));
+                new Categoria(descricao, EFinalidade.Despesas));
 
             Assert.Equal("A descrição não pode ter mais de 400 caracteres.", exception.Message);
         }
@@ -67,7 +67,7 @@ namespace DomainTest
             var finalidade = EFinalidade.Receita;
 
             // Act
-            var categoria = new CategoriaEntity("Salário", finalidade);
+            var categoria = new Categoria("Salário", finalidade);
 
             // Assert
             Assert.Equal((int)finalidade, categoria.Finalidade);

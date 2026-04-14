@@ -1,8 +1,7 @@
 using Gastos.API;
+using Gastos.API.Extensions;
 using Gastos.Application;
 using Gastos.Infra;
-using Gastos.Infra.Context;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +16,8 @@ builder.Services.AddOpenApi()
 
 
 var app = builder.Build();
+
+app.InitializeDb();
 
 app.UseScalarDocumentation();
 
