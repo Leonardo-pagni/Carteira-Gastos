@@ -22,5 +22,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=GastosDB;User Id=sa;Password=Your_password123;TrustServerCertificate=True;
+
 volumes:
   sql_data:

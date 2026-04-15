@@ -17,7 +17,14 @@ namespace Gastos.Infra
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<ITransacoesRepository, TransacoesRepository>();
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer( configuration.GetConnectionString("DefaultConnection"), sqlOptions =>
+            {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(10),
+                errorNumbersToAdd: null
+            );
+            }));
 
             return services;
         }

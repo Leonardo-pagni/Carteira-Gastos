@@ -13,7 +13,7 @@
     }
   ],
   "paths": {
-    "/Pessoa/Get": {
+    "/Pessoa": {
       "get": {
         "tags": [
           "Pessoa"
@@ -21,7 +21,7 @@
         "parameters": [
           {
             "name": "Page",
-            "in": "header",
+            "in": "query",
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
@@ -34,7 +34,7 @@
           },
           {
             "name": "PageSize",
-            "in": "header",
+            "in": "query",
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
@@ -51,9 +51,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/Pessoa/Create": {
+      },
       "post": {
         "tags": [
           "Pessoa"
@@ -85,7 +83,7 @@
         }
       }
     },
-    "/Pessoa/Upated": {
+    "/Pessoa/{id}": {
       "put": {
         "tags": [
           "Pessoa"
@@ -93,7 +91,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "header",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -125,9 +124,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/Pessoa/Delete": {
+      },
       "delete": {
         "tags": [
           "Pessoa"
@@ -135,7 +132,8 @@
         "parameters": [
           {
             "name": "id",
-            "in": "header",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -149,7 +147,7 @@
         }
       }
     },
-    "/Categoria/Get": {
+    "/Categoria": {
       "get": {
         "tags": [
           "Categoria"
@@ -157,7 +155,7 @@
         "parameters": [
           {
             "name": "Page",
-            "in": "header",
+            "in": "query",
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
@@ -170,7 +168,7 @@
           },
           {
             "name": "PageSize",
-            "in": "header",
+            "in": "query",
             "schema": {
               "pattern": "^-?(?:0|[1-9]\\d*)$",
               "type": [
@@ -187,9 +185,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/Categoria/Create": {
+      },
       "post": {
         "tags": [
           "Categoria"
@@ -221,7 +217,7 @@
         }
       }
     },
-    "/Transacoes/Get": {
+    "/Transacoes": {
       "get": {
         "tags": [
           "Transacoes"
@@ -259,9 +255,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/Transacoes/Create": {
+      },
       "post": {
         "tags": [
           "Transacoes"

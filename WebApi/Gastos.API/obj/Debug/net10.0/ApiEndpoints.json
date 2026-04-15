@@ -1,8 +1,29 @@
 [
   {
     "ContainingType": "Gastos.API.Controllers.CategoriaController",
+    "Method": "Get",
+    "RelativePath": "Categoria",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gastos.API.Controllers.CategoriaController",
     "Method": "Create",
-    "RelativePath": "Categoria/Create",
+    "RelativePath": "Categoria",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -16,9 +37,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Gastos.API.Controllers.CategoriaController",
+    "ContainingType": "Gastoc.API.Controllers.PessoaController",
     "Method": "Get",
-    "RelativePath": "Categoria/Get",
+    "RelativePath": "Pessoa",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -39,7 +60,7 @@
   {
     "ContainingType": "Gastoc.API.Controllers.PessoaController",
     "Method": "Create",
-    "RelativePath": "Pessoa/Create",
+    "RelativePath": "Pessoa",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -55,7 +76,28 @@
   {
     "ContainingType": "Gastoc.API.Controllers.PessoaController",
     "Method": "Updated",
-    "RelativePath": "Pessoa/Delete",
+    "RelativePath": "Pessoa/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "pessoaRequest",
+        "Type": "PessoaRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gastoc.API.Controllers.PessoaController",
+    "Method": "Updated",
+    "RelativePath": "Pessoa/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -63,15 +105,15 @@
       {
         "Name": "id",
         "Type": "System.Guid",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Gastoc.API.Controllers.PessoaController",
+    "ContainingType": "Gastos.API.Controllers.TransacoesController",
     "Method": "Get",
-    "RelativePath": "Pessoa/Get",
+    "RelativePath": "Transacoes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -90,30 +132,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Gastoc.API.Controllers.PessoaController",
-    "Method": "Updated",
-    "RelativePath": "Pessoa/Upated",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": false
-      },
-      {
-        "Name": "pessoaRequest",
-        "Type": "PessoaRequestDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "Gastos.API.Controllers.TransacoesController",
     "Method": "Create",
-    "RelativePath": "Transacoes/Create",
+    "RelativePath": "Transacoes",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -122,27 +143,6 @@
         "Name": "request",
         "Type": "TransacoesRequestDTO",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gastos.API.Controllers.TransacoesController",
-    "Method": "Get",
-    "RelativePath": "Transacoes/Get",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Page",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
